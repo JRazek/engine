@@ -44,14 +44,13 @@ static sk_sp<SkData> NormalizeImage(sk_sp<SkImage> image) {
   sk_sp<SkData> data = SkData::MakeUninitialized(size);
   if (!data) {
     FML_CHECK(false) << "Unable to allocate data.";
+  }else{
+    bool success = image->readPixels(norm_image_info, data->writable_data(),
+                                    row_bytes, 0, 0);
+    if (!success) {
+      FML_CHECK(false) << "Unable to read pixels.";
+    }
   }
-
-  bool success = image->readPixels(norm_image_info, data->writable_data(),
-                                   row_bytes, 0, 0);
-  if (!success) {
-    FML_CHECK(false) << "Unable to read pixels.";
-  }
-
   return data;
 }
 
