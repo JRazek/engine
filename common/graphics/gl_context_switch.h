@@ -49,7 +49,6 @@ class SwitchableGLContext {
 // that doesn't require context switching.
 class GLContextResult {
  public:
-  GLContextResult();
   virtual ~GLContextResult();
 
   //----------------------------------------------------------------------------

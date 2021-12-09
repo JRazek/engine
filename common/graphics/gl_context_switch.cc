@@ -10,8 +10,6 @@ SwitchableGLContext::SwitchableGLContext() = default;
 
 SwitchableGLContext::~SwitchableGLContext() = default;
 
-GLContextResult::GLContextResult() = default;
-
 GLContextResult::~GLContextResult() = default;
 
 GLContextResult::GLContextResult(bool static_result) : result_(static_result){};
@@ -26,9 +24,9 @@ GLContextDefaultResult::GLContextDefaultResult(bool static_result)
 GLContextDefaultResult::~GLContextDefaultResult() = default;
 
 GLContextSwitch::GLContextSwitch(std::unique_ptr<SwitchableGLContext> context)
-    : context_(std::move(context)) {
+    : GLContextResult(context_->SetCurrent()),
+    context_(std::move(context)) {
   FML_CHECK(context_ != nullptr);
-  result_ = context_->SetCurrent();
 };
 
 GLContextSwitch::~GLContextSwitch() {
