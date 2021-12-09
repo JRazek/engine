@@ -195,8 +195,6 @@ class MutatorsStack {
 
 class EmbeddedViewParams {
  public:
-  EmbeddedViewParams() = default;
-
   EmbeddedViewParams(SkMatrix matrix,
                      SkSize size_points,
                      MutatorsStack mutators_stack)
